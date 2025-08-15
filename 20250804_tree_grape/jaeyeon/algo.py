@@ -4,20 +4,34 @@ N = int(input())
 # 부모 주어짐. 없으면 -1
 parent_list = list(map(int,input().split()))
 
+
 #삭제할 노드 입력받기
 del_node = int(input())
 
-p,c = parent_list.index(parent_list[0]), parent_list[0]
+tree_list = [[] for _ in range(N)]
+root = -1
 
-# 노드 인접 리스트 생성
-node_list = {}
-for child, par in enumerate(parent_list):
-    if par == -1:
-        root = child
+for i,p in enumerate(parent_list):
+    if p == -1:
+        root = i
     else:
-        node_list.setdefault(par, []).append(child)
+        tree_list[p].append(i)
 
+if del_node == root:
+    print(0)
 
+else:
+    tree_list[parent_list[del_node]].remove(del_node)
 
-
-print(node_list)
+    cnt = 0
+    for i in range(N):
+        tmp = i
+        del_subtree = False
+        while tmp != -1:
+            if tmp == del_node:
+                del_subtree = True
+                break
+            tmp = parent_list[tmp]
+        if not del_subtree and not tree_list[i]:
+            cnt += 1
+    print(cnt)
