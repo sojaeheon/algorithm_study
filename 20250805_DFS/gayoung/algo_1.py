@@ -1,3 +1,7 @@
+import sys
+sys.stdin = open('input.txt', 'r')
+
+
 def dfs(node):
     # global 선언
     global num
