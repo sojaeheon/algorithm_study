@@ -47,3 +47,4 @@ for command in commands:
 
     # 좌표 업데이트
     x, y = nx, ny
+    
