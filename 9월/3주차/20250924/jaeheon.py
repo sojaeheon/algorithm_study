@@ -14,11 +14,19 @@ from collections import deque
 d_row = [-1,1,0,0]
 d_col = [0,0,-1,1]
 
+<<<<<<< HEAD
 def population_move(row,col,country,l,r):
   visited = [[False]*n for _ in range(n)]
   que = deque([(row,col)])
   visited[row][col]=True
   set_country = set()
+=======
+def population_move(row,col,visited,country,l,r):
+  que = deque([(row,col)])
+  visited[row][col]=True
+  set_country = set()
+  set_country.add((row,col))
+>>>>>>> d76f0586adb5eb7174a8c4f34fa4516685a71558
 
   while que:
     c_row, c_col = que.popleft()
@@ -37,6 +45,7 @@ def population_move(row,col,country,l,r):
 
       visited[n_row][n_col] = True
       que.append((n_row,n_col))
+<<<<<<< HEAD
       set_country.add((c_row,c_col))
       set_country.add((n_row,n_col))
   
@@ -48,6 +57,17 @@ def population_move(row,col,country,l,r):
     new_val = total // len(set_country)
     for r, c in set_country:
       country[r][c] = new_val
+=======
+      set_country.add((n_row,n_col))
+  
+  if len(set_country)>1:
+    total = 0
+    for x, y in set_country:
+      total += country[x][y]
+    new_val = total //len(set_country)
+    for x, y in set_country:
+      country[x][y] = new_val
+>>>>>>> d76f0586adb5eb7174a8c4f34fa4516685a71558
     return True
   else:
     return False
@@ -61,12 +81,22 @@ country = [list(map(int,input().split())) for _ in range(n)]
 day = 0
 
 while True:
+<<<<<<< HEAD
   flag = False
   for i in range(n):
     for j in range(n):
       if not flag:
         # 인구이동
         flag = population_move(i,j,country,l,r)
+=======
+  visited = [[False]*n for _ in range(n)]
+  flag=False
+  for i in range(n):
+    for j in range(n):
+      if not visited[i][j]:
+        # 인구이동
+        if population_move(i,j,visited,country,l,r): flag = True
+>>>>>>> d76f0586adb5eb7174a8c4f34fa4516685a71558
 
   # 인구이동이 있었다면 day +=1
   if flag:
