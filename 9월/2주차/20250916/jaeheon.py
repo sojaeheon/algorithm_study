@@ -17,7 +17,7 @@ k = int(input())
 for _ in range(k):
     # 돌릴 바퀴와 방향
     wheel_num, dirt = map(int,input().split())
-    wheel-=1
+    wheel_num-=1
     
     # 어떤 톱니바퀴를 어떤 방향으로 돌릴지 저장
     rotation_info = [(wheel_num, dirt)]
